@@ -1,0 +1,30 @@
+/* index.css lub App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background-color 1s ease, color 1s ease;
+}
+
+/* Jasny motyw */
+body.light-mode {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Ciemny motyw */
+body.dark-mode {
+  background-color: #121212;
+  color: #f8f9fa;
+}
+
+/* Opcjonalnie: navbar */
+.navbar {
+  transition: background-color 1s ease, color 1s ease;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
