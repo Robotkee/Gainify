@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({ lang, translations }) => {
+  const t = translations[lang];
   const [form, setForm] = useState({ name: '', surname: '', email: '', password: '' });
   const navigate = useNavigate();
 
@@ -9,31 +10,31 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async e => {
-  e.preventDefault();
-  try {
-    const response = await fetch('http://localhost:5000/api/auth/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(form),
-    });
-    if (response.ok) {
-      alert('Zarejestrowano!');
-      navigate('/login');
-    } else {
-      alert('Rejestracja nie powiodła się!');
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (response.ok) {
+        alert(t.registerSuccess);
+        navigate('/login');
+      } else {
+        alert(t.registerFail);
+      }
+    } catch (error) {
+      alert(t.registerError);
     }
-  } catch (error) {
-    alert('Błąd połączenia z serwerem!');
-  }
-};
+  };
 
   return (
     <div className="container mt-5">
-      <h2><center>Rejestracja</center></h2>
+      <h2><center>{t.registerTitle}</center></h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label>Imię</label>
+          <label>{t.nameLabel}</label>
           <input
             type="text"
             name="name"
@@ -44,7 +45,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Nazwisko</label>
+          <label>{t.surnameLabel}</label>
           <input
             type="text"
             name="surname"
@@ -55,7 +56,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Email</label>
+          <label>{t.emailLabel}</label>
           <input
             type="email"
             name="email"
@@ -66,7 +67,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-3">
-          <label>Hasło</label>
+          <label>{t.passwordLabel}</label>
           <input
             type="password"
             name="password"
@@ -76,7 +77,7 @@ const Register = () => {
             required
           />
         </div>
-        <center><button type="submit" className="btn btn-warning">Zarejestruj</button></center>
+        <center><button type="submit" className="btn btn-warning">{t.registerBtn}</button></center>
       </form>
     </div>
   );

@@ -1,2 +1,2 @@
-const About = () => <h2>O nas</h2>;
+const About = ({ lang, translations }) => <h2>{translations[lang].about}</h2>;
 export default About;
