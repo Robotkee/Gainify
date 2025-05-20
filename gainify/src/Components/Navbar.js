@@ -29,8 +29,8 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
 
           {/* Linki */}
           <div className="d-none d-lg-flex gap-4">
-            <Link className="btn btn-outline-warning" to="/about">{t.about}</Link>
-            <Link className="btn btn-outline-warning" to="/products">{t.products}</Link>
+            <Link className="btn btn-warning" to="/about">{t.about}</Link>
+            <Link className="btn btn-warning" to="/products">{t.products}</Link>
           </div>
 
           {/* Logowanie + przycisk trybu + Flaga */}
