@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 import Logo from '../Logo/Logo2.png';
 import PolandFlag from '../Logo/pl.png';
 import USFlag from '../Logo/us.png';
+import SunIcon from '../Logo/sun.png';   // Dodaj import
+import MoonIcon from '../Logo/moon.png'; // Dodaj import
 
 const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
   const t = translations[lang];
@@ -27,27 +30,31 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
             </Link>
           </div>
 
-          {/* Linki */}
-          <div className="d-none d-lg-flex gap-4">
-            <Link className="btn btn-warning" to="/about">{t.about}</Link>
-            <Link className="btn btn-warning" to="/products">{t.products}</Link>
-          </div>
-
-          {/* Logowanie + przycisk trybu + Flaga */}
-          <div className="d-flex gap-2 align-items-center">
-            <Link className="btn btn-warning" to="/login">{t.login}</Link>
-            <Link className="btn btn-warning" to="/register">{t.register}</Link>
-              <button onClick={toggleTheme} className="btn btn-outline-warning">
-                {darkMode ? '☀️' : '🌙'}
-              </button>
+          {/* Przyciski nawigacyjne */}
+          <div className="d-flex align-items-center gap-2">
+            <Link className="btn btn-warning navbar-btn" to="/about">{t.about}</Link>
+            <Link className="btn btn-warning navbar-btn" to="/products">{t.products}</Link>
+            <Link className="btn btn-warning navbar-btn" to="/login">{t.login}</Link>
+            <Link className="btn btn-warning navbar-btn" to="/register">{t.register}</Link>
+            <button 
+              onClick={toggleTheme} 
+              className="btn navbar-btn navbar-btn-small border-0"
+              aria-label={darkMode ? 'Tryb jasny' : 'Tryb ciemny'}
+              style={{ background: 'none', padding: 0 }}
+            >
+              <img 
+                src={darkMode ? SunIcon : MoonIcon} 
+                alt={darkMode ? 'Słońce' : 'Księżyc'} 
+                style={{ width: 24, height: 24 }} 
+              />
+            </button>
             <button
               onClick={handleLangChange}
-              className="btn btn-light p-1 border-0"
+              className="btn btn-light border-0 navbar-btn navbar-btn-small"
               title={t.switchLang}
-              style={{ background: 'none' }}
+              style={{ background: 'none', padding: 0 }}
             >
-            <img src={lang === 'pl' ? PolandFlag : USFlag}alt={t.flagAlt} style={{ width: 28, height: 20, objectFit: 'cover' }}
-            />
+              <img src={lang === 'pl' ? PolandFlag : USFlag} alt={t.flagAlt} style={{ width: 28, height: 20, objectFit: 'cover' }} />
             </button>
           </div>
 
