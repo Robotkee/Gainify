@@ -30,6 +30,8 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
             </Link>
           </div>
 
+          {/* Jakiś tekst motywacyjny */}
+
           {/* Przyciski nawigacyjne */}
           <div className="d-flex align-items-center gap-2">
             <Link className="btn btn-warning navbar-btn" to="/about">{t.about}</Link>
@@ -48,6 +50,9 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
                 style={{ width: 24, height: 24 }} 
               />
             </button>
+
+            {/* Po zalogowaniu Napis zamiast buttona Login i Register, Witaj - (Nazwa Użytkownika zalogowanego) */}
+
             <button
               onClick={handleLangChange}
               className="btn btn-light border-0 navbar-btn navbar-btn-small"

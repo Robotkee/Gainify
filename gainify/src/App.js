@@ -87,7 +87,7 @@ function App() {
           translations={translations}
         />
         <Routes>
-          <Route path="/" element={<Home lang={lang} translations={translations} />} />
+          <Route path="/" element={<Home lang={lang} translations={translations} darkMode={darkMode} />} />
           <Route path="/about" element={<About lang={lang} translations={translations} />} />
           <Route path="/products" element={<Products lang={lang} translations={translations} />} />
           <Route path="/login" element={<Login lang={lang} translations={translations} />} />
