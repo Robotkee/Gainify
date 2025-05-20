@@ -1,47 +1,62 @@
 import React, { useState } from 'react';
 
-const LoginForm = ({ onLoginSuccess }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+const PRODUCTS = [
+  { id: 1, name: 'Jabłko', calories: 52, protein: 0.3, carbs: 14, fat: 0.2 },
+  { id: 2, name: 'Banana', calories: 89, protein: 1.1, carbs: 23, fat: 0.3 },
+  { id: 3, name: 'Kurczak', calories: 165, protein: 31, carbs: 0, fat: 3.6 },
+  { id: 4, name: 'Ryż', calories: 130, protein: 2.7, carbs: 28, fat: 0.3 },
+  // Dodaj więcej produktów według potrzeb
+];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        credentials: 'include', // ważne, by wysłać ciasteczka sesji!
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-      if (res.ok) {
-        const data = await res.json();
-        onLoginSuccess(data.user);
-      } else {
-        const err = await res.json();
-        setError(err.message);
-      }
-    } catch (err) {
-      setError('Błąd połączenia z serwerem');
-    }
-  };
+const Products = () => {
+  const [search, setSearch] = useState('');
+
+  const filtered = PRODUCTS.filter(product =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Logowanie</h2>
-      <input 
-        type="text" placeholder="Nazwa użytkownika" value={username} 
-        onChange={e => setUsername(e.target.value)} required 
-      />
-      <input 
-        type="password" placeholder="Hasło" value={password} 
-        onChange={e => setPassword(e.target.value)} required 
-      />
-      <button type="submit">Zaloguj się</button>
-      {error && <p style={{color: 'red'}}>{error}</p>}
-    </form>
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center">Baza produktów</h2>
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Wyszukaj produkt..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+      </div>
+      <table className="table table-striped table-bordered">
+        <thead className="table-warning">
+          <tr>
+            <th>Nazwa</th>
+            <th>Kalorie</th>
+            <th>Białko (g)</th>
+            <th>Węglowodany (g)</th>
+            <th>Tłuszcz (g)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filtered.length === 0 ? (
+            <tr>
+              <td colSpan="5" className="text-center">Brak wyników</td>
+            </tr>
+          ) : (
+            filtered.map(product => (
+              <tr key={product.id}>
+                <td>{product.name}</td>
+                <td>{product.calories}</td>
+                <td>{product.protein}</td>
+                <td>{product.carbs}</td>
+                <td>{product.fat}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
-export default LoginForm;
+export default Products;
