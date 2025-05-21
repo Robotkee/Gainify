@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IphoneImg from '../Logo/Iphone.png';
 
+const carouselImages = [
+  { src: IphoneImg, alt: 'iPhone preview' },
+  { src: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', alt: 'Healthy food' },
+  { src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', alt: 'Workout' },
+];
+
 const Home = ({ lang, translations }) => {
   const t = translations[lang];
 
@@ -41,13 +47,12 @@ const Home = ({ lang, translations }) => {
         </div>
       </div>
 
-      {/* Sekcja zalet */}
       <div className="row text-center g-4">
         <div className="col-md-4">
           <div className="p-4 border rounded h-100">
             <span style={{ fontSize: 40 }}>📱</span>
             <h5 className="mt-3">
-              {lang === 'pl' ? 'Intuicyjna aplikacja' : 'Intuitive app'}
+              {lang === 'pl' ? 'Intuicyjny serwis internetowy' : 'Intuitive web service'}
             </h5>
             <p>
               {lang === 'pl'
@@ -82,6 +87,37 @@ const Home = ({ lang, translations }) => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div id="carouselExampleIndicators" className="carousel slide mt-5" data-bs-ride="carousel">
+        <div className="carousel-indicators">
+          {carouselImages.map((img, idx) => (
+            <button
+              key={idx}
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to={idx}
+              className={idx === 0 ? 'active' : ''}
+              aria-current={idx === 0 ? 'true' : undefined}
+              aria-label={`Slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+        <div className="carousel-inner">
+          {carouselImages.map((img, idx) => (
+            <div key={idx} className={`carousel-item${idx === 0 ? ' active' : ''}`}>
+              <img src={img.src} className="d-block w-100" alt={img.alt} style={{ maxHeight: 600, objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   );

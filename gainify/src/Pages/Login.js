@@ -32,33 +32,46 @@ const Login = ({ lang, translations }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2><center>{t.loginTitle}</center></h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label>{t.emailLabel}</label>
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
+      <div className="card shadow p-4" style={{ maxWidth: 400, width: '100%', borderRadius: 20 }}>
+        <h2 className="mb-4 text-center" style={{ color: '#ffb300', fontWeight: 700 }}>{t.loginTitle}</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">{t.emailLabel}</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control form-control-lg rounded-pill"
+              value={form.email}
+              onChange={handleChange}
+              required
+              autoFocus
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">{t.passwordLabel}</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control form-control-lg rounded-pill"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="d-grid mb-3">
+            <button type="submit" className="btn btn-warning btn-lg rounded-pill" style={{ fontWeight: 600 }}>
+              {t.loginBtn}
+            </button>
+          </div>
+        </form>
+        <div className="text-center mt-3">
+          <span>{lang === 'pl' ? 'Nie masz konta?' : "Don't have an account?"} </span>
+          <a href="/register" className="text-warning" style={{ fontWeight: 500 }}>
+            {t.register}
+          </a>
         </div>
-        <div className="mb-3">
-          <label>{t.passwordLabel}</label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <center><button type="submit" className="btn btn-warning">{t.loginBtn}</button></center>
-      </form>
+      </div>
     </div>
   );
 };

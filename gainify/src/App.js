@@ -6,6 +6,7 @@ import About from './Pages/About';
 import Products from './Pages/Products';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import Footer from './Components/Footer';
 
 const translations = {
   pl: {
@@ -94,6 +95,7 @@ function App() {
           <Route path="/register" element={<Register lang={lang} translations={translations} />} />
         </Routes>
       </Router>
+      <Footer lang={lang} translations={translations} />
     </div>
   );
 }
