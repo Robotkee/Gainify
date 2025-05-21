@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import IphoneImg from '../Logo/Iphone.png';
 
@@ -10,6 +10,20 @@ const carouselImages = [
 
 const Home = ({ lang, translations }) => {
   const t = translations[lang];
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const username = localStorage.getItem('username');
+    setIsLoggedIn(!!username);
+
+    const handleStorage = () => {
+      const username = localStorage.getItem('username');
+      setIsLoggedIn(!!username);
+    };
+
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
 
   return (
     <div className="container py-5">
@@ -28,14 +42,16 @@ const Home = ({ lang, translations }) => {
               ? 'Planuj posiłki, licz kalorie i osiągaj swoje cele zdrowotne szybciej niż kiedykolwiek!'
               : 'Plan your meals, count calories, and reach your health goals faster than ever!'}
           </p>
-          <div className="d-flex gap-3">
-            <Link to="/register" className="btn btn-warning btn-lg">
-              {t.register}
-            </Link>
-            <Link to="/login" className="btn btn-outline-warning btn-lg">
-              {t.login}
-            </Link>
-          </div>
+          {!isLoggedIn && (
+            <div className="d-flex gap-3">
+              <Link to="/register" className="btn btn-warning btn-lg">
+                {t.register}
+              </Link>
+              <Link to="/login" className="btn btn-outline-warning btn-lg">
+                {t.login}
+              </Link>
+            </div>
+          )}
         </div>
         <div className="col-md-5 text-center">
           <img

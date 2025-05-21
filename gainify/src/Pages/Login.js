@@ -11,25 +11,27 @@ const Login = ({ lang, translations }) => {
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('username', data.name || form.email);
-        alert(t.loginSuccess);
-        navigate('/');
-      } else {
-        alert(t.loginFail);
-      }
-    } catch (error) {
-      alert(t.loginError);
+  e.preventDefault();
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('username', data.name || form.email);
+      // Dodaj event, który poinformuje Navbar o zmianie
+      window.dispatchEvent(new Event('storage'));
+      alert(t.loginSuccess);
+      navigate('/');
+    } else {
+      alert(t.loginFail);
     }
-  };
+  } catch (error) {
+    alert(t.loginError);
+  }
+};
 
   return (
     <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
