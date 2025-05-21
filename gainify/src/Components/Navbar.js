@@ -30,7 +30,7 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
             </Link>
           </div>
 
-          {/* Jakiś tekst motywacyjny */}
+         {/* Po zalogowaniu Napis zamiast, Witaj - (Nazwa Użytkownika zalogowanego) */}
 
           <div className="d-flex align-items-center gap-2">
             <Link className="btn btn-warning navbar-btn" to="/about">{t.about}</Link>
@@ -66,7 +66,6 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
               <img src={lang === 'pl' ? PolandFlag : USFlag} alt={t.flagAlt} style={{ width: 28, height: 20, objectFit: 'cover' }} />
             </button>
           </div>
-{/* Po zalogowaniu Napis zamiast buttona Login i Register, Witaj - (Nazwa Użytkownika zalogowanego) */}
         </div>
       </div>
     </nav>
