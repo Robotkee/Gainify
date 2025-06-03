@@ -13,12 +13,13 @@ const Home = ({ lang, translations }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
-    setIsLoggedIn(!!username);
+    // Sprawdzaj obecność obiektu user w localStorage
+    const storedUser = localStorage.getItem('user');
+    setIsLoggedIn(!!storedUser);
 
     const handleStorage = () => {
-      const username = localStorage.getItem('username');
-      setIsLoggedIn(!!username);
+      const storedUser = localStorage.getItem('user');
+      setIsLoggedIn(!!storedUser);
     };
 
     window.addEventListener('storage', handleStorage);

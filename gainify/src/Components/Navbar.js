@@ -15,14 +15,31 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
+    // Pobierz dane użytkownika z localStorage (obiekt z imieniem)
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const userObj = JSON.parse(storedUser);
+        setUsername(userObj.name || userObj.email || '');
+      } catch {
+        setUsername('');
+      }
+    } else {
+      setUsername('');
     }
 
     const handleStorage = () => {
-      const newUsername = localStorage.getItem('username');
-      setUsername(newUsername || '');
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          const userObj = JSON.parse(storedUser);
+          setUsername(userObj.name || userObj.email || '');
+        } catch {
+          setUsername('');
+        }
+      } else {
+        setUsername('');
+      }
     };
 
     window.addEventListener('storage', handleStorage);
@@ -39,16 +56,16 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
   };
 
   const handleLogout = () => {
-  localStorage.removeItem('username');
+  localStorage.removeItem('user');
   setUsername('');
   setShowDropdown(false);
   alert(lang === 'pl' ? 'Wylogowano pomyślnie' : 'Logged out successfully');
-  navigate('/');
+  window.location.reload();
 };
 
   return (
     <nav className={`navbar navbar-expand-lg sticky-top ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow-sm`}>
-      <div className="container-fluid px-4">
+      <div className="container-fluid px-5">
         <div className="d-flex align-items-center w-100 justify-content-between">
           <Link className="navbar-brand" to="/">
             <img src={Logo} alt="Gainify Logo" style={{ height: '65px' }} />
