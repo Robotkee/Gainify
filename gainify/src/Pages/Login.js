@@ -20,8 +20,7 @@ const Login = ({ lang, translations }) => {
     });
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem('username', data.name || form.email);
-      // Dodaj event, który poinformuje Navbar o zmianie
+      localStorage.setItem('username', data.name);
       window.dispatchEvent(new Event('storage'));
       alert(t.loginSuccess);
       navigate('/');
