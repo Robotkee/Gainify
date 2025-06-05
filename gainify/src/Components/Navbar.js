@@ -44,13 +44,14 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
   setShowDropdown(false);
   alert(lang === 'pl' ? 'Wylogowano pomyślnie' : 'Logged out successfully');
   navigate('/');
+  window.location.reload();
 };
 
   return (
     <nav className={`navbar navbar-expand-lg sticky-top ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow-sm`}>
       <div className="container-fluid px-4">
         <div className="d-flex align-items-center w-100 justify-content-between">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand mx-5" to="/">
             <img src={Logo} alt="Gainify Logo" style={{ height: '65px' }} />
           </Link>
           

@@ -20,7 +20,10 @@ const Footer = ({ lang, translations }) => (
         </div>
         <div className="col-md-6 mb-3 text-center">
           <h5>{lang === 'pl' ? 'Kontakt' : 'Contact'}</h5>
-          <ul className="list-unstyled d-flex justify-content-center gap-4" style={{ fontSize: 0, padding: 15 }}>
+          <ul className="list-unstyled d-flex justify-content-center gap-4" style={{ fontSize: 0, padding: 15
+
+            
+           }}>
             <li>
               <a href="mailto:support@gainify.com" className="text-light text-decoration-none" title="E-mail">
                 <MailIcon style={{ width: 32, height: 32, verticalAlign: 'middle' }} />
