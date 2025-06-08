@@ -15,14 +15,31 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
+    // Pobierz dane użytkownika z localStorage (obiekt z imieniem)
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const userObj = JSON.parse(storedUser);
+        setUsername(userObj.name || userObj.email || '');
+      } catch {
+        setUsername('');
+      }
+    } else {
+      setUsername('');
     }
 
     const handleStorage = () => {
-      const newUsername = localStorage.getItem('username');
-      setUsername(newUsername || '');
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          const userObj = JSON.parse(storedUser);
+          setUsername(userObj.name || userObj.email || '');
+        } catch {
+          setUsername('');
+        }
+      } else {
+        setUsername('');
+      }
     };
 
     window.addEventListener('storage', handleStorage);
@@ -39,7 +56,7 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
   };
 
   const handleLogout = () => {
-  localStorage.removeItem('username');
+  localStorage.removeItem('user');
   setUsername('');
   setShowDropdown(false);
   alert(lang === 'pl' ? 'Wylogowano pomyślnie' : 'Logged out successfully');
@@ -49,7 +66,7 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
 
   return (
     <nav className={`navbar navbar-expand-lg sticky-top ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow-sm`}>
-      <div className="container-fluid px-4">
+      <div className="container-fluid px-5">
         <div className="d-flex align-items-center w-100 justify-content-between">
           <Link className="navbar-brand mx-5" to="/">
             <img src={Logo} alt="Gainify Logo" style={{ height: '65px' }} />
@@ -64,6 +81,7 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
           </div>
 
           <div className="d-flex align-items-center gap-2">
+            <Link className="btn btn-warning navbar-btn" to="/Bmi">{t.BMI}</Link>
             <Link className="btn btn-warning navbar-btn" to="/about">{t.about}</Link>
             <Link className="btn btn-warning navbar-btn" to="/products">{t.products}</Link>
             

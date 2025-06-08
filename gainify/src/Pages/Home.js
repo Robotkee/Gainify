@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import LogImg from '../Logo/logowanie.png';
+import BmiImg from '../Logo/BMI.png';
 import IphoneImg from '../Logo/Iphone.png';
+import RegImg from '../Logo/Rejestracja.png';
 
 const carouselImages = [
-  { src: IphoneImg, alt: 'iPhone preview' },
-  { src: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', alt: 'Healthy food' },
-  { src: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80', alt: 'Workout' },
+  { src: LogImg, alt: 'Login preview' },
+  { src: RegImg, alt: 'Register Calc' },
+  { src: BmiImg, alt: 'BMI Calc' },
 ];
 
 const Home = ({ lang, translations }) => {
@@ -13,12 +16,12 @@ const Home = ({ lang, translations }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
-    setIsLoggedIn(!!username);
+    const storedUser = localStorage.getItem('user');
+    setIsLoggedIn(!!storedUser);
 
     const handleStorage = () => {
-      const username = localStorage.getItem('username');
-      setIsLoggedIn(!!username);
+      const storedUser = localStorage.getItem('user');
+      setIsLoggedIn(!!storedUser);
     };
 
     window.addEventListener('storage', handleStorage);
@@ -122,7 +125,7 @@ const Home = ({ lang, translations }) => {
         <div className="carousel-inner">
           {carouselImages.map((img, idx) => (
             <div key={idx} className={`carousel-item${idx === 0 ? ' active' : ''}`}>
-              <img src={img.src} className="d-block w-100" alt={img.alt} style={{ maxHeight: 600, objectFit: 'cover' }} />
+              <img src={img.src} className="d-block w-100 carousel-img-border" alt={img.alt} style={{ maxHeight: 600, objectFit: 'cover' }} />
             </div>
           ))}
         </div>
