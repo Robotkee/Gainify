@@ -84,7 +84,6 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang, translations }) => {
             <Link className="btn btn-warning navbar-btn" to="/Bmi">{t.BMI}</Link>
             <Link className="btn btn-warning navbar-btn" to="/about">{t.about}</Link>
             <Link className="btn btn-warning navbar-btn" to="/products">{t.products}</Link>
-            
             <div className="position-relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}

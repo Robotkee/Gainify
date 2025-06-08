@@ -20,7 +20,7 @@ const Login = ({ lang, translations }) => {
     });
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem('username', data.name || form.email);
+      localStorage.setItem('user', JSON.stringify({ name: data.name || form.email, email: form.email }));
       window.dispatchEvent(new Event('storage'));
       alert(t.loginSuccess);
       navigate('/');

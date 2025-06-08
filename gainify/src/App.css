@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+.main-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: inherit;
+  min-height: calc(90vh - 60px);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: var(--bs-dark);
 }
 
-.App-link {
-  color: #61dafb;
+.theme-dark {
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.theme-light {
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+}
+
+.carousel-img-border {
+  border: 6px solid var(--carousel-border);
+  border-radius: 18px;
+  transition: border-color 0.3s;
+}
+
+body:not(.dark-mode) .carousel-img-border {
+  --carousel-border: #ffb300;
+}
+
+body.dark-mode .carousel-img-border {
+  --carousel-border: #fff;
 }

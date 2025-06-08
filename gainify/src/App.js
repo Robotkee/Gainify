@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Products from './Pages/Products';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import Footer from './Components/Footer';
+import BMI from './Pages/BMI';
+import './App.css';
+
 
 const translations = {
   pl: {
@@ -39,6 +42,8 @@ const translations = {
     loginSuccess: 'Zalogowano!',
     loginFail: 'Błędny email lub hasło!',
     loginError: 'Błąd połączenia z serwerem!',
+    bmiCalculator: 'Kalkulator BMI',
+    BMI: 'Kalkulator BMI',
   },
   en: {
     about: 'About',
@@ -70,33 +75,40 @@ const translations = {
     loginSuccess: 'Logged in!',
     loginFail: 'Wrong email or password!',
     loginError: 'Server connection error!',
+    bmiCalculator: 'BMI Calculator',
+    BMI: 'BMI Calculator',
   },
 };
 
-function App() {
+      function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [lang, setLang] = useState('pl');
 
   return (
-    <div className={darkMode ? 'bg-dark text-light min-vh-100' : 'bg-light text-dark min-vh-100'}>
-      <Router>
-        <Navbar
-          darkMode={darkMode}
-          setDarkMode={setDarkMode}
-          lang={lang}
-          setLang={setLang}
-          translations={translations}
-        />
-        <Routes>
-          <Route path="/" element={<Home lang={lang} translations={translations} darkMode={darkMode} />} />
-          <Route path="/about" element={<About lang={lang} translations={translations} />} />
-          <Route path="/products" element={<Products lang={lang} translations={translations} />} />
-          <Route path="/login" element={<Login lang={lang} translations={translations} />} />
-          <Route path="/register" element={<Register lang={lang} translations={translations} />} />
-        </Routes>
-      </Router>
-      <Footer lang={lang} translations={translations} />
-    </div>
+    <Router>
+      <div className="app-wrapper">
+        <div className="page-container">
+          <Navbar
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            lang={lang}
+            setLang={setLang}
+            translations={translations}
+          />
+          <main className={`main-content ${darkMode ? 'bg-dark text-light' : 'bg-light text-dark'}`}>
+            <Routes>
+              <Route path="/" element={<Home lang={lang} translations={translations} darkMode={darkMode} />} />
+              <Route path="/about" element={<About lang={lang} translations={translations} />} />
+              <Route path="/products" element={<Products lang={lang} translations={translations} />} />
+              <Route path="/login" element={<Login lang={lang} translations={translations} />} />
+              <Route path="/register" element={<Register lang={lang} translations={translations} />} />
+              <Route path="/bmi" element={<BMI lang={lang} translations={translations} />} />
+            </Routes>
+          </main>
+          <Footer lang={lang} translations={translations} />
+        </div>
+      </div>
+    </Router>
   );
 }
 

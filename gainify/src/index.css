@@ -1,26 +1,30 @@
 body {
+  margin: 0;
+  padding: 0;
   transition: background-color 0.5s, color 0.5s;
-  background-color: #f8f9fa;
-  color: #222;
 }
 
 body.dark-mode {
-  background-color: #181818;
+  background-color: #212529;
   color: #f8f9fa;
 }
 
 body.light-mode {
   background-color: #f8f9fa;
-  color: #222;
+  color: #212529;
 }
 
-/* Przykład dla .container, jeśli chcesz płynne tło również w kontenerze */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   transition: background-color 0.5s, color 0.5s;
   background: transparent;
 }
 
-/* Opcjonalnie: navbar */
 .navbar {
   transition: background-color 1s ease, color 1s ease;
 }

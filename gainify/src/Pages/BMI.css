@@ -1,0 +1,40 @@
+.bmi-container {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  max-width: 500px;
+  padding: 2rem;
+  padding-bottom: 0;
+  background-color: inherit;
+}
+
+.bmi-form {
+  background-color: inherit;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 0;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  margin-bottom: 3rem;
+}
+
+.btn-warning {
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Add styles for results container if BMI is calculated */
+.bmi-results {
+  margin-bottom: 0;
+  background-color: inherit;
+  padding: 1rem;
+}

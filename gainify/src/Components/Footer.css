@@ -1,3 +1,25 @@
 .footer-shadow {
   box-shadow: 0 -6px 24px -6px rgba(0,0,0,0.18);
 }
+
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
+}
+
+body:not(.dark-mode) footer {
+  background-color: var(--bs-light);
+  color: var(--bs-dark);
+}
+
+footer .container {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background: transparent !important;
+}
